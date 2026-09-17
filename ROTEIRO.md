@@ -99,13 +99,23 @@ Guarde essa informação, porque ela é o ponto de partida da atividade: **uma s
 
 A suíte em `testes/renovarAssinatura.test.js` foi escrita por outra equipe. Ela passa inteira. **Nem todos os testes estão errados.**
 
-Para cada um dos seis testes, preencha uma linha:
+Para cada um dos seis testes, preencha uma linha: 
 
-| Teste | Colaborador | Qual dublê é, de fato | Está adequado? | Se não, qual o problema |
-|---|---|---|---|---|
-| T1 | `repositorio` | | | |
-| T1 | `gateway` | | | |
-| ... | | | | |
+Teste: T1 — renova uma assinatura ativa
+Colaborador: repositorio
+. Qual dublê é, de fato: Mock
+. Está adequado? Não
+. Se não, qual o problema: Sofre de superespecificação: o teste só conta chamadas (toHaveBeenCalledTimes) em vez de verificar o dado real gerado (se a nova data salva estava correta).
+
+Colaborador: gateway
+. Qual dublê é, de fato: Stub e Mock
+. Está adequado? Não
+. Se não, qual o problema: Engessa o código ao auditar a própria ferramenta de cobrança em vez de apenas forçar a aprovação e focar no resultado final da função. Na criação, ele faz papel de Stub, mas na última linha ele aparece no expect(gateway.cobrar).toHaveBeenCalledTimes(1), ele faz papel de Mock. Ou seja, o programador fez ele trabalhar de duas formas. Ele forçou uma resposta (Stub) e depois auditou a variável (Mock). E é exatamente por isso que o T1 está errado.
+
+Colaborador: notificador
+. Qual dublê é, de fato: Mock
+. Está adequado? Não
+. Se não, qual o problema: Amarra o teste à execução interna da função, verificando apenas se ela tentou enviar um e-mail, mas falhando em conferir se a mensagem enviada estava com o texto correto
 
 **Regras da etapa:**
 
