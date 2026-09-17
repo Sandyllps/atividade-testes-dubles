@@ -99,15 +99,9 @@ Guarde essa informação, porque ela é o ponto de partida da atividade: **uma s
 
 A suíte em `testes/renovarAssinatura.test.js` foi escrita por outra equipe. Ela passa inteira. **Nem todos os testes estão errados.**
 
-Para cada um dos seis testes, preencha uma linha:
+Para cada um dos seis testes, preencha uma linha: 
 
-| Teste | Colaborador | Qual dublê é, de fato | Está adequado? | Se não, qual o problema |
-
-| T1 | `repositorio`
-| T1 | `gateway`
-. Qual dublê é, de fato: Na criação, ele faz papel de Stub, mas na última linha ele aparece no expect(gateway.cobrar).toHaveBeenCalledTimes(1), ele faz papel de Mock. Ou seja, o programador fez ele trabalhar de duas formas. Ele forçou uma resposta (Stub) e depois auditou a variável (Mock). E é exatamente por isso que o T1 está errado.
-
-T1 — renova uma assinatura ativa
+Teste: T1 — renova uma assinatura ativa
 Colaborador: repositorio
 . Qual dublê é, de fato: Mock
 . Está adequado? Não
@@ -116,7 +110,7 @@ Colaborador: repositorio
 Colaborador: gateway
 . Qual dublê é, de fato: Stub e Mock
 . Está adequado? Não
-. Se não, qual o problema: Engessa o código ao auditar a própria ferramenta de cobrança em vez de apenas forçar a aprovação e focar no resultado final da função.
+. Se não, qual o problema: Engessa o código ao auditar a própria ferramenta de cobrança em vez de apenas forçar a aprovação e focar no resultado final da função. Na criação, ele faz papel de Stub, mas na última linha ele aparece no expect(gateway.cobrar).toHaveBeenCalledTimes(1), ele faz papel de Mock. Ou seja, o programador fez ele trabalhar de duas formas. Ele forçou uma resposta (Stub) e depois auditou a variável (Mock). E é exatamente por isso que o T1 está errado.
 
 Colaborador: notificador
 . Qual dublê é, de fato: Mock
