@@ -34,16 +34,16 @@ const relogioFixo = { hoje: () => new Date('2026-03-01T00:00:00Z') };
 // ── T1 ───────────────────────────────────────────────────────────────
 test('T1 — renova uma assinatura ativa', async () => {
   const repositorio = { salvar: vi.fn() };
-  const gateway = { cobrar: vi.fn().mockResolvedValue({ status: 'aprovado' }) };
+  const gateway = { cobrar: vi.fn().mockResolvedValue({ status: 'aprovado' }) }; //Stub
   const notificador = { enviar: vi.fn() };
 
   await renovarAssinatura(
     assinaturaAtiva(), repositorio, gateway, notificador, relogioFixo
   );
 
-  expect(gateway.cobrar).toHaveBeenCalledTimes(1);
-  expect(repositorio.salvar).toHaveBeenCalledTimes(1);
-  expect(notificador.enviar).toHaveBeenCalledTimes(1);
+  expect(gateway.cobrar).toHaveBeenCalledTimes(1); //Mock
+  expect(repositorio.salvar).toHaveBeenCalledTimes(1); //Mock
+  expect(notificador.enviar).toHaveBeenCalledTimes(1); //Mock
 });
 
 // ── T2 ───────────────────────────────────────────────────────────────
